@@ -1,3 +1,4 @@
+library(dplyr)
 library(projmanr)
 
 shinyServer(function(input, output) {
