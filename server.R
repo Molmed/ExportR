@@ -31,7 +31,7 @@ shinyServer(function(input, output) {
   )
   
   datasetInput <- reactive({
-    fetch_information_for_project(connection(), input$project)
+    projmanr::fetch_information_for_project(connection(), input$project)
   })
   
   output$downloadData <- downloadHandler(
@@ -52,7 +52,7 @@ shinyServer(function(input, output) {
     connection <- RSQLServer::src_sqlserver("MS_SQL", file='sql.yaml', database = 'ProjectMan')
     start_date <- paste(input$year, "-01-01")
     end_date <- paste(input$year, "-12-31")
-    report.data <- fetch_aggregated_data_per_instrument_for_period(connection, start_date, end_date)
+    report.data <- projmanr::fetch_aggregated_data_per_instrument_for_period(connection, start_date, end_date)
     write.csv(report.data, file = file, row.names=FALSE)
     }
   )
