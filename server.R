@@ -65,7 +65,7 @@ shinyServer(function(input, output) {
       connection <- RSQLServer::src_sqlserver("MS_SQL", file='sql.yaml', database = 'ProjectMan')
       start_date <- input$dateRange[1]
       end_date <- input$dateRange[2]
-      aggregated_data <- fetch_aggregated_data_per_instrument_for_period(connection, start_date, end_date)
+      aggregated_data <- projmanr::fetch_project_summaries_for_date_range(connection, start_date, end_date)
       write.csv(aggregated_data, file = file, row.names=FALSE)
     }
 
